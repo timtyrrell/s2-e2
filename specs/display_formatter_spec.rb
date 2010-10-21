@@ -9,11 +9,11 @@ require File.dirname(__FILE__)+ '/../app/entities/dolphin'
 describe "should" do
   before(:each) do
     @formatter = DisplayFormatter.new
-    @strategies = []
-    @strategies << FemaleHonorificStrategy.new
-    @strategies << MaleHonorificStrategy.new
-    @strategies << DefaultHonorificStrategy.new
-    @formatter.strategies = @strategies
+    strategies = []
+    strategies << FemaleHonorificStrategy.new
+    strategies << MaleHonorificStrategy.new
+    strategies << DefaultHonorificStrategy.new
+    @formatter.strategies = strategies
 
   end
 
@@ -23,25 +23,25 @@ describe "should" do
   end
 
 
-  it "should match a strategy by the matches method" do
+#  it "should match a strategy by the matches method" do
 
-  end
+#  end
 
-  it "should match the first strategy" do
+#  it "should match the first strategy" do
 
-  end
+#  end
 
-  it "should check all strategies for matches" do
+#  it "should check all strategies for matches" do
 
-  end
+#  end
 
-  it "should return display for matched strategy" do
+#  it "should return display for matched strategy" do
 
-  end
+#  end
 
-  it "should only call display on matched method" do
+#  it "should only call display on matched method" do
 
-  end
+#  end
 
 end
 
