@@ -10,41 +10,34 @@ require File.dirname(__FILE__)+ '/../app/entities/dolphin'
 describe "display formatter tests" do
   before(:each) do
     @formatter = DisplayFormatter.new
-    formatter_strategies = []
-    formatter_strategies << JudyHonorificStrategy.new
-    formatter_strategies << FemaleHonorificStrategy.new
-    formatter_strategies << MaleHonorificStrategy.new
-    formatter_strategies << DefaultHonorificStrategy.new
-    @formatter.strategies = formatter_strategies
 
+    @judy_strategy = JudyHonorificStrategy.new
+    @female_strategy = FemaleHonorificStrategy.new
+    @male_strategy = MaleHonorificStrategy.new
+    @default_strategy = DefaultHonorificStrategy.new
+
+    @formatter.strategies = [@judy_strategy, @female_strategy, @male_strategy, @default_strategy]
   end
 
   it "should return the default strategy if nothing matches" do
-    dolphin = Dolphin.new
-    dolphin.name = "Echo"
-    @formatter.get_display_for(dolphin).should == "Echo"
+    dolphin = Dolphin.new "Echo"
+    @formatter.find_strategy_for(dolphin).should be_an_instance_of DefaultHonorificStrategy
   end
 
+  it "should match a strategy by the matches method" do
+    dolphin = Dolphin.new "Echo"
+    @judy_strategy.stub!(:matches).and_return(true)
+    @formatter.find_strategy_for(dolphin).should == @judy_strategy
+  end
 
-#  it "should match a strategy by the matches method" do
+  it "should return display for matched strategy" do
+    dolphin = Dolphin.new "Echo"
 
-#  end
+    @default_strategy.stub!(:matches).and_return(true)
+    @default_strategy.stub!(:display_honorific).and_return("test")
 
-#  it "should match the first strategy" do
+    @formatter.get_display_for(dolphin).should == "test"
 
-#  end
-
-#  it "should check all strategies for matches" do
-
-#  end
-
-#  it "should return display for matched strategy" do
-
-#  end
-
-#  it "should only call display on matched method" do
-
-#  end
-
+  end
 end
 

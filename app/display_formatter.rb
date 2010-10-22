@@ -11,7 +11,7 @@ class DisplayFormatter
   end
 
   def find_strategy_for(entity)
-    @strategies.select {|strategy| strategy.matches(entity) }.first
+    @strategies.find {|strategy| strategy.matches(entity) }
   end
 end
 

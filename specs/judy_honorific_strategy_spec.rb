@@ -7,19 +7,17 @@ describe "Judy Formatter Strategy" do
   end
 
   it "should not match on the female object with the name of Athena" do
-    female = Female.new
+    female = Female.new "Athena"
     @judy_strategy.matches(female).should be false
   end
 
    it "should match on female object" do
-    female = Female.new
-    female.name = "Judy"
+    female = Female.new "Judy"
     @judy_strategy.matches(female).should be true
   end
 
   it "should return the object name" do
-    female = Female.new
-    female.name = "Judy"
+    female = Female.new "Judy"
     @judy_strategy.display_honorific(female).should == "Judge Judy"
   end
 end
