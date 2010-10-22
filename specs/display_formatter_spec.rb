@@ -1,25 +1,28 @@
 require File.dirname(__FILE__)+ '/../app/display_formatter'
 require File.dirname(__FILE__)+ '/../app/strategies/default_honorific_strategy'
 require File.dirname(__FILE__)+ '/../app/strategies/male_honorific_strategy'
+require File.dirname(__FILE__)+ '/../app/strategies/judy_honorific_strategy'
 require File.dirname(__FILE__)+ '/../app/strategies/female_honorific_strategy'
 require File.dirname(__FILE__)+ '/../app/entities/male'
 require File.dirname(__FILE__)+ '/../app/entities/female'
 require File.dirname(__FILE__)+ '/../app/entities/dolphin'
 
-describe "should" do
+describe "display formatter tests" do
   before(:each) do
     @formatter = DisplayFormatter.new
-    strategies = []
-    strategies << FemaleHonorificStrategy.new
-    strategies << MaleHonorificStrategy.new
-    strategies << DefaultHonorificStrategy.new
-    @formatter.strategies = strategies
+    formatter_strategies = []
+    formatter_strategies << JudyHonorificStrategy.new
+    formatter_strategies << FemaleHonorificStrategy.new
+    formatter_strategies << MaleHonorificStrategy.new
+    formatter_strategies << DefaultHonorificStrategy.new
+    @formatter.strategies = formatter_strategies
 
   end
 
   it "should return the default strategy if nothing matches" do
     dolphin = Dolphin.new
-    @formatter.get_display_for(dolphin).should be_an_instance_of DefaultHonorificStrategy
+    dolphin.name = "Echo"
+    @formatter.get_display_for(dolphin).should == "Echo"
   end
 
 

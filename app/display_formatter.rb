@@ -6,12 +6,12 @@ class DisplayFormatter
   end
 
   def get_display_for(entity)
-    strategy = find_strategy_for(entity)
-    strategy.display_honorific(entity)
+    matched_strategy = find_strategy_for(entity)
+    matched_strategy.display_honorific(entity)
   end
 
   def find_strategy_for(entity)
-    @strategies.each {|strategy| strategy.matches(entity)  }
+    @strategies.select {|strategy| strategy.matches(entity) }.first
   end
 end
 
