@@ -1,10 +1,6 @@
 class FemaleHonorificStrategy
-  def matches(entity)
-    if entity.class.name == "Female"
-      true
-    else
-      false
-    end
+  def matches?(entity)
+    entity.kind_of?(Female)
   end
 
   def display_honorific(entity)

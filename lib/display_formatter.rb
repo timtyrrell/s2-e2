@@ -1,7 +1,7 @@
 class DisplayFormatter
   attr_accessor :strategies
 
-  def initialize(*strategies)
+  def initialize
     @strategies = []
   end
 
@@ -11,7 +11,7 @@ class DisplayFormatter
   end
 
   def find_strategy_for(entity)
-    @strategies.find {|strategy| strategy.matches(entity) }
+    @strategies.find {|strategy| strategy.matches?(entity) }
   end
 end
 

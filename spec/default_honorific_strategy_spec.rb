@@ -1,6 +1,6 @@
-require File.dirname(__FILE__)+ '/../app/strategies/default_honorific_strategy'
-require File.dirname(__FILE__)+ '/../app/entities/male'
-require File.dirname(__FILE__)+ '/../app/entities/female'
+require File.dirname(__FILE__)+ '/../lib/strategies/default_honorific_strategy'
+require File.dirname(__FILE__)+ '/../lib/entities/male'
+require File.dirname(__FILE__)+ '/../lib/entities/female'
 
 describe "Default Formatter Strategy" do
   before(:each) do
@@ -8,12 +8,12 @@ describe "Default Formatter Strategy" do
   end
   it "should match on female object" do
     female = Female.new "Athena"
-    @default.matches(female).should be true
+    @default.matches?(female).should be true
   end
 
   it "should match on the male object" do
     male = Male.new "Loki"
-    @default.matches(male).should be true
+    @default.matches?(male).should be true
   end
 
   it "should return the object name" do

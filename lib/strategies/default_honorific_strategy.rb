@@ -1,5 +1,5 @@
 class DefaultHonorificStrategy
-  def matches(entity)
+  def matches?(entity)
     true
   end
 
